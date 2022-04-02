@@ -49,9 +49,9 @@ router.get('/livedata', function (request, response) {
 response.render('index', { title: 'livedata' });
 });
 
-router.get('/teacher', function (request, response) {
-  response.render('index', { title: 'Welcome, teacher!' });
-});
+// router.get('/test', function (request, response) {
+//   response.render('index', { title: 'Welcome, test!' });
+// });
 
 app.use('/', router);
 

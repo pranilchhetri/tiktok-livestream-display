@@ -5,7 +5,7 @@ This repository showcase tiktok livestream data on web using node.js, express on
 
 + `/`
 + `/livedata`
-+ `/teacher`
+
 
 ## Install
 
