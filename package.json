@@ -20,6 +20,7 @@
   "dependencies": {
     "ejs": "~2.3.3",
     "express": "~4.13.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "tiktok-livestream-chat-connector": "^0.9.15"
   }
 }

@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-
+var {WebcastPushConnection} = require('tiktok-livestream-chat-connector');
 var app = express();
 
 // view engine setup
@@ -8,6 +8,29 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(__dirname + '/public'));
+//Username of someone who is currently live
+let tiktokUsername = "aanshvermaa_100";
+
+//create a new wrapper object and pass the username
+let tiktokChatConnection = new WebcastPushConnection(tiktokUsername);
+
+// Connect to the chat (await can be used as well)
+tiktokChatConnection.connect().then(state => {
+    console.info(`Connected to roomId ${state.roomId}`);
+}).catch(err =>{
+    console.error('Failed to connect', err);
+})
+
+//Define the events that you want to handle
+//In this case we listen to chat messages( comments)
+
+
+// //And here we receive gifts sent to the streamer
+tiktokChatConnection.on('gift',data =>{
+    console.log(`${data.uniqueId} (userId:${data.userId}) sends ${data.giftId}`);
+})
 
 const PORT = 8080;
 
@@ -18,7 +41,11 @@ router.get('/', function (request, response) {
 });
 
 router.get('/student', function (request, response) {
-  response.render('index', { title: 'Welcome, student!' });
+  tiktokChatConnection.on('chat', data=>{
+    console.log(`${data.uniqueId} (userId:${data.userId}) writes: ${data.comment}`);
+    response.render('index', { title: `${data.comment}` });
+})
+  
 });
 
 router.get('/teacher', function (request, response) {
