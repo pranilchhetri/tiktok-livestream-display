@@ -1,11 +1,10 @@
 # Express.js and EJS
 
-Example of using Node.js, Express.js and EJS.
-
+This repository showcase tiktok livestream data on web using node.js, express on backend and ejs as a view engine
 ### Endpoints
 
 + `/`
-+ `/student`
++ `/livedata`
 + `/teacher`
 
 ## Install
@@ -21,3 +20,4 @@ Example of using Node.js, Express.js and EJS.
 
 + http://expressjs.com
 + http://ejs.co
++ https://www.npmjs.com/package/tiktok-livestream-chat-connector

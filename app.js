@@ -36,16 +36,17 @@ const PORT = 8080;
 
 var router = express.Router();
 
+tiktokChatConnection.on('chat', data=>{
+  console.log(`${data.uniqueId} (userId:${data.userId}) writes: ${data.comment}`);
+ 
+})
 router.get('/', function (request, response) {
   response.render('index', { title: 'Welcome!' });
 });
 
-router.get('/student', function (request, response) {
-  tiktokChatConnection.on('chat', data=>{
-    console.log(`${data.uniqueId} (userId:${data.userId}) writes: ${data.comment}`);
-    response.render('index', { title: `${data.comment}` });
-})
-  
+router.get('/livedata', function (request, response) {
+
+response.render('index', { title: 'livedata' });
 });
 
 router.get('/teacher', function (request, response) {
